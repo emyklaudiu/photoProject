@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Edit gallery</h2>
+
+<div class="fileUpload btn btn-primary">
+    <span>Upload</span>
+    <input type="file" class="upload" />
+</div>
+
+@using (Html.BeginForm("Upload", "EditGallery", FormMethod.Post,
+                                      new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        Select a file <input type="file" name="file" />
+        <input type="submit" value="Upload" />
+    </fieldset>
+}
