@@ -11,7 +11,7 @@ namespace PhotoProject.Models
 
         public string imageName { get; set;}
 
-        public string imageDescription {get;set;}
+        public string imageURL {get;set;}
 
 
     }

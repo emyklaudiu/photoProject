@@ -4,8 +4,6 @@
 
 <h2>Edit gallery</h2>
 
-
-
 @using (Html.BeginForm("Upload", "EditGallery", FormMethod.Post,
                                       new { enctype = "multipart/form-data" }))
 {
@@ -16,22 +14,25 @@
             <input type="file" id="uploadBox" name="file" class="upload" />
         </div>
 
-        <input type="submit" id="uploadFile" value="Upload" style="visibility:hidden"/>
+        <input type="submit" id="uploadFile" value="Upload"/>
     </fieldset>
+
+    Html.RenderPartial("~/Views/EditGallery/_ImageItem.cshtml");
 }
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>  
-     
-    $('#uploadBox').change(function() {        
-        if (document.getElementById("uploadBox").value != "") {
-            $('#uploadBox').hide();
+    $(document).ready(function () {
+        $('#uploadFile').hide();
+    });
+
+    $('#uploadBox').change(function () {
+        if ($('#uploadBox').val() != "") {
             $('#uploadFile').show();
         }
-        else
-        {
+        else {
             $('#uploadFile').hide();
-            $('#uploadBox').show();
         }
-    })
+    });
+
 </script>
