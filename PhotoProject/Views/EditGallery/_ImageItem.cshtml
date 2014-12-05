@@ -2,8 +2,7 @@
 
 @for(int i=0; i<Model.Count();i++)
 {
-    Html.Label(Model[i].imageURL);
-    Html.Label("blabla");
+  @Html.Label(Model[i].imageName)
+  <img src="@Url.Content("~/images/uploads/gallery/"+@Model[i].imageName+".jpg")" width="200"/>
+    @Html.ActionLink("Delete", "DeleteImage", "EditGallery", Model[i], null);
 }
-@Html.Label(Model[0].imageURL)
-<img src="@Model[0].imageURL" />

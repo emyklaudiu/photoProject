@@ -240,6 +240,7 @@
     <Content Include="Views\EditGallery\Index.cshtml" />
     <Content Include="Views\EditGallery\Upload.cshtml" />
     <Content Include="Views\EditGallery\_ImageItem.cshtml" />
+    <Content Include="Views\EditGallery\DeleteImage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="images\uploads\gallery\" />

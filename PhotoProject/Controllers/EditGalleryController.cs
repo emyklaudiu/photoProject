@@ -14,15 +14,20 @@ namespace PhotoProject.Controllers
         
         public ActionResult Index()
         {
-            string directoryPath = AppDomain.CurrentDomain.BaseDirectory + "images\\uploads\\gallery";
+            string directoryPath =Server.MapPath(@"~\images\uploads\gallery");
             string[] filePaths = Directory.GetFiles(directoryPath);
+            var path = Server.MapPath("~/images/uploads/gallery/");
+            var di = new DirectoryInfo(path);
+            var files = di.GetFiles();
 
             ImageModel[] imgM = new ImageModel[filePaths.Length];
             
             for (int i = 0; i < filePaths.Length; i++)
             {
                 imgM[i] = new ImageModel();
-                imgM[i].imageURL = filePaths[i];
+                var filename = files[i].Name.Split('.');
+                imgM[i].imageURL = files[i].FullName;
+                imgM[i].imageName = filename[0];
             }
             return View(imgM);
         }
@@ -52,6 +57,19 @@ namespace PhotoProject.Controllers
             return RedirectToAction("Index");
         }
 
+        
+        public ActionResult DeleteImage(ImageModel fileName)
+        {
+            var fullPath = Server.MapPath("~/images/uploads/gallery/" + fileName.imageName+".jpg");
 
+
+
+            if (System.IO.File.Exists(fullPath))
+            {
+                System.IO.File.Delete(fullPath);                
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }
