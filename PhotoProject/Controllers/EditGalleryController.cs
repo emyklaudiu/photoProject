@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PhotoProject.Helpers;
 
 namespace PhotoProject.Controllers
 {
@@ -14,22 +15,9 @@ namespace PhotoProject.Controllers
         
         public ActionResult Index()
         {
-            string directoryPath =Server.MapPath(@"~\images\uploads\gallery");
-            string[] filePaths = Directory.GetFiles(directoryPath);
-            var path = Server.MapPath("~/images/uploads/gallery/");
-            var di = new DirectoryInfo(path);
-            var files = di.GetFiles();
+            LoadImageHelper lh = new LoadImageHelper();
 
-            ImageModel[] imgM = new ImageModel[filePaths.Length];
-            
-            for (int i = 0; i < filePaths.Length; i++)
-            {
-                imgM[i] = new ImageModel();
-                var filename = files[i].Name.Split('.');
-                imgM[i].imageURL = files[i].FullName;
-                imgM[i].imageName = filename[0];
-            }
-            return View(imgM);
+            return View(lh.loadImages());
         }
 
           [HttpPost]

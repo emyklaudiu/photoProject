@@ -1,8 +1,12 @@
-﻿using System;
+﻿using PhotoProject.Helpers;
+using PhotoProject.Models;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace PhotoProject.Controllers
 {
@@ -11,7 +15,9 @@ namespace PhotoProject.Controllers
         // GET: Gallery
         public ActionResult Index()
         {
-            return View();
+            LoadImageHelper lh = new LoadImageHelper();
+
+            return View(lh.loadImages());
         }
 
         public ActionResult EditGallery()

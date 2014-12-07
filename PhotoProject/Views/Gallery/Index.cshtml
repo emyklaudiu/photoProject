@@ -3,7 +3,17 @@
     ViewBag.Title = "Index";
 }
 
+
 <h2>Gallery</h2>
+<div>
+    @Html.ActionLink("Edit Gallery", "Index", "EditGallery", null, null)
+</div>
+<div style=" /*width: 60%;
+  height: 60%;*/
+  /*min-width: 200px;
+  max-width: 400px;*/
+  padding: 40px;">
+    <img id="imageFrame" src="~/images/uploads/gallery/2006-Lamborghini-Murcielago-LP640-FA-1024x768.jpg" style="width:70%;height:70%; display:block;margin:auto " />
+</div>
 
-@Html.ActionLink("Edit Gallery", "Index", "EditGallery", null, null)
-
+@Html.Partial("~/Views/EditGallery/_ImageItem.cshtml")

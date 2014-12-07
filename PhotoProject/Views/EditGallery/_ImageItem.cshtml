@@ -1,8 +1,26 @@
 ﻿@model PhotoProject.Models.ImageModel[]
 
-@for(int i=0; i<Model.Count();i++)
-{
-  @Html.Label(Model[i].imageName)
-  <img src="@Url.Content("~/images/uploads/gallery/"+@Model[i].imageName+".jpg")" width="200"/>
-    @Html.ActionLink("Delete", "DeleteImage", "EditGallery", Model[i], null);
-}
+<div style="display:inline-block; vertical-align:middle; text-align:center">
+    @for (int i = 0; i < Model.Count(); i++)
+    {
+        <div style="display:inline-block; width:200px; margin:20px">
+            @Html.Label(Model[i].imageName.Length>25?Model[i].imageName.Substring(0,25):Model[i].imageName)<br />
+            <img src="@Url.Content("~/images/uploads/gallery/"+@Model[i].imageName+".jpg")" width="200" onclick="clickImage(this.src);" /><br />
+            @Html.ActionLink("Delete", "DeleteImage", "EditGallery", Model[i], null)
+        </div>
+
+    }
+</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script >
+    function clickImage(imagePath)
+    {
+        var imageFrame = document.getElementById("imageFrame");
+        if(imageFrame!=null)
+        {
+            imageFrame.src = imagePath;
+        }
+                      
+    }
+</script>
