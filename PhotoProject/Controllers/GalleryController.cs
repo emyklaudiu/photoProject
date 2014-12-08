@@ -22,7 +22,10 @@ namespace PhotoProject.Controllers
 
         public ActionResult Fade()
         {
-            return View();
+            LoadImageHelper lh = new LoadImageHelper();
+
+            return View(lh.loadImages());
+            
         }
 
         public ActionResult EditGallery()

@@ -25,6 +25,71 @@
 
 		    jQuery(function ($) {
 
+		        //var listOfPictures = 0;
+
+		      @*  @{
+		            
+                    Model[0].imageName = "sda";
+                    
+		        }
+		        alert('@Model[0].imageName');*@
+		      		        
+		        var image = { 
+		            image: '/images/uploads/gallery/globuri2.jpg', 
+		            title: 'Image Credit: Maria Kazvan', 
+		            thumb: '/images/uploads/gallery/globuri2.jpg', 
+		            url: '/images/uploads/gallery/globuri2.jpg' };
+
+		        var image2 = {
+		            image: '/images/uploads/gallery/'+ @Html.Raw(Json.Encode(Model[0].imageName))+".jpg", 
+		            title: @Html.Raw(Json.Encode(Model[0].imageName)),
+		            thumb: '/images/uploads/gallery/'+ @Html.Raw(Json.Encode(Model[0].imageName))+".jpg",
+		            url:  '/images/uploads/gallery/'+ @Html.Raw(Json.Encode(Model[0].imageName))+".jpg",
+
+                    };
+		        
+
+		       
+		        @*for(var x=0; x<"@Model.Length";x++)
+		        {
+		            alert(Model[x].imageName);
+		        }*@
+
+@*		        var i = @Model.Length;
+		        @int count = @Model.Length;
+		        for(var j=0; j<i; j++)
+		        {                    
+		            alert(@Model[count].imageName);
+		            alert(@Html.Raw(Json.Encode(Model[0].imageName)));
+		        }*@
+
+		        @*                @foreach (var item in Model) {
+
+
+
+   @Html.DisplayFor(modelItem => item.UserName)
+
+
+
+}
+           *@   
+
+		        //var data = set(@Html.Raw(new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(Model)));
+		        var model = [@Html.Raw(Json.Encode(Model))][0];
+		        //alert(model[0].imageName);
+
+		       // alert(model.Length);
+
+		        model.forEach(
+		        {
+		            alert(item.imageName);
+		        }
+
+		        for(var i=0; i<model.Length; i++)
+		        {
+		            alert(model[i].imageName);
+		        }
+
 		        $.supersized({
 
 		            // Functionality
@@ -35,9 +100,8 @@
 		            // Components							
 		            slide_links: 'blank',	// Individual links for each slide (Options: false, 'num', 'name', 'blank')
 		            slides: [			// Slideshow Images
-								{ image: '/images/uploads/gallery/globuri2.jpg', title: 'Image Credit: Maria Kazvan', thumb: '/images/uploads/gallery/globuri2.jpg', url: '/images/uploads/gallery/globuri2.jpg' },
-                                { image: '/images/uploads/gallery/globuri.jpg', title: 'Image Credit: Maria Kazvan', thumb: '/images/uploads/gallery/globuri.jpg', url: '/images/uploads/gallery/globuri.jpg' }
-		            ]
+                        image2
+								 ]
 
 		        });
 		    });
