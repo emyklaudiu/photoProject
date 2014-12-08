@@ -20,6 +20,11 @@ namespace PhotoProject.Controllers
             return View(lh.loadImages());
         }
 
+        public ActionResult Fade()
+        {
+            return View();
+        }
+
         public ActionResult EditGallery()
         {
             return RedirectToAction("Index", "EditGallery");

@@ -179,11 +179,31 @@
     <Content Include="App_Data\aspnet-PhotoProject-20141123073428_log.ldf" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\supersized.css" />
+    <Content Include="Content\img\back.png" />
+    <Content Include="Content\img\bg-black.png" />
+    <Content Include="Content\img\bg-hover.png" />
+    <Content Include="Content\img\button-tray-down.png" />
+    <Content Include="Content\img\button-tray-up.png" />
+    <Content Include="Content\img\forward.png" />
+    <Content Include="Content\img\nav-bg.png" />
+    <Content Include="Content\img\nav-dot.png" />
+    <Content Include="Content\img\pause.png" />
+    <Content Include="Content\img\play.png" />
+    <Content Include="Content\img\progress-back.png" />
+    <Content Include="Content\img\progress-bar.png" />
+    <Content Include="Content\img\progress.gif" />
+    <Content Include="Content\img\supersized-logo.png" />
+    <Content Include="Content\img\thumb-back.png" />
+    <Content Include="Content\img\thumb-forward.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="images\siteImages\no_image.png" />
+    <Content Include="Scripts\jquery.easing.min.js" />
+    <Content Include="Scripts\supersized.3.2.7.js" />
+    <Content Include="Scripts\supersized.3.2.7.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -198,6 +218,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Content\supersized.shutter.css" />
+    <Content Include="Scripts\supersized.shutter.js" />
+    <Content Include="Scripts\supersized.shutter.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -243,6 +266,7 @@
     <Content Include="Views\EditGallery\Upload.cshtml" />
     <Content Include="Views\EditGallery\_ImageItem.cshtml" />
     <Content Include="Views\EditGallery\DeleteImage.cshtml" />
+    <Content Include="Views\Gallery\Fade.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="images\uploads\gallery\" />
