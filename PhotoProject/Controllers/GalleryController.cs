@@ -10,7 +10,7 @@ using System.Web.Routing;
 
 namespace PhotoProject.Controllers
 {
-    public class GalleryController : Controller
+    public class GalleryController : BaseController
     {
         // GET: Gallery
         public ActionResult Index()
@@ -31,6 +31,14 @@ namespace PhotoProject.Controllers
         public ActionResult EditGallery()
         {
             return RedirectToAction("Index", "EditGallery");
+
+        }
+
+        public JsonResult ReturnModel()
+        {
+            LoadImageHelper lh = new LoadImageHelper();
+
+            return Json(lh.loadImages());
 
         }
     }
