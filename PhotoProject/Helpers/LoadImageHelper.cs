@@ -20,13 +20,27 @@ namespace PhotoProject.Helpers
 
             ImageModel[] imgM = new ImageModel[filePaths.Length];
 
-            for (int i = 0; i < filePaths.Length; i++)
+            if (imgM.Length > 0)
             {
-                imgM[i] = new ImageModel();
-                var filename = files[i].Name.Split('.');
-                imgM[i].imageURL = files[i].FullName;
-                imgM[i].imageName = filename[0];
+                for (int i = 0; i < filePaths.Length; i++)
+                {
+                    imgM[i] = new ImageModel();
+                    var filename = files[i].Name.Split('.');                   
+                    imgM[i].imageName = filename[0];
+                    imgM[i].imageURL = "/images/uploads/gallery/" + imgM[i].imageName + ".jpg";                   
+                }
             }
+            else
+            {
+                string noImagePath = @"images\siteImages\no_image.png";
+                ImageModel model = new ImageModel();
+                model.imageName = "No Image";
+                model.imageURL = noImagePath;                
+
+                imgM = new ImageModel[1];
+                imgM[0] = model;
+            }
+
 
             return imgM;
         }

@@ -268,6 +268,7 @@
     <Content Include="Views\EditGallery\_ImageItem.cshtml" />
     <Content Include="Views\EditGallery\DeleteImage.cshtml" />
     <Content Include="Views\Gallery\Fade.cshtml" />
+    <Content Include="Views\Shared\_GalleryLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="images\uploads\gallery\" />
