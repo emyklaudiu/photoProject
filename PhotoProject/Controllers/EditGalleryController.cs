@@ -12,13 +12,13 @@ namespace PhotoProject.Controllers
     public class EditGalleryController : Controller
     {
         // GET: EditGallery
-        
-        public ActionResult Index()
+        [Authorize]
+        public ActionResult Index(string id)
         {
             LoadImageHelper lh = new LoadImageHelper();
 
-            return View(lh.loadImages());
-        }
+            return View(lh.loadImages(id));
+        }      
 
           [HttpPost]
           public ActionResult addImage(HttpPostedFileBase file)
@@ -34,21 +34,21 @@ namespace PhotoProject.Controllers
         }
 
         [HttpPost]
-          public ActionResult Upload(HttpPostedFileBase file)
+          public ActionResult Upload(HttpPostedFileBase file, string id)
         {
             if (file != null && file.ContentLength > 0)
             {
                 var fileName = Path.GetFileName(file.FileName);
-                var path = Path.Combine(Server.MapPath("~/images/uploads/gallery"), fileName);
+                var path = Path.Combine(Server.MapPath("~/images/uploads/gallery/" + id), fileName);
                 file.SaveAs(path);
             }
-            return RedirectToAction("Index");
+            return RedirectToAction("Index/"+id);
         }
 
         
         public ActionResult DeleteImage(ImageModel fileName)
         {
-            var fullPath = Server.MapPath("~/images/uploads/gallery/" + fileName.imageName+".jpg");
+            var fullPath = Server.MapPath("~/images/uploads/gallery/"+ fileName.galleryName+"/" + fileName.imageName+".jpg");
 
 
 
@@ -57,7 +57,15 @@ namespace PhotoProject.Controllers
                 System.IO.File.Delete(fullPath);                
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index/"+fileName.galleryName);
+        }
+
+        public ActionResult NewGallery(string galleryName)
+        {
+            var fullPath = Server.MapPath("~/images/uploads/gallery/" + galleryName.Split('/')[1]);
+            Directory.CreateDirectory(fullPath);
+
+            return RedirectToAction(galleryName);
         }
     }
 }

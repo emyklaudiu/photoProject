@@ -11,13 +11,18 @@ namespace PhotoProject.Controllers
     public class BaseController:Controller
     {
         public ImageModel[] model;
-
         public BaseController()
+        {
+            LoadImageHelper loadHelper = new LoadImageHelper();
+            model = loadHelper.loadImages("");
+            ViewBag.LayoutModel = model;
+        }
+        public BaseController(string albumName)
         {
             // Here you will use some business logic to populate your Layout Model
             // You might also consider placing this model into the cache to prevent constant fetching of data from the database on each page request.
             LoadImageHelper loadHelper = new LoadImageHelper();
-            model = loadHelper.loadImages();
+            model = loadHelper.loadImages(albumName);
             ViewBag.LayoutModel = model;
         }
     }

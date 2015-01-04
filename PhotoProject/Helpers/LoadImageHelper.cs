@@ -12,22 +12,56 @@ namespace PhotoProject.Helpers
     {
         public ImageModel[] loadImages()
         {
-            string directoryPath = HttpContext.Current.Server.MapPath(@"~\images\uploads\gallery");
-            string[] filePaths = Directory.GetFiles(directoryPath);
-            var path = HttpContext.Current.Server.MapPath("~/images/uploads/gallery/");
-            var di = new DirectoryInfo(path);
-            var files = di.GetFiles();
+            return loadImages("");
+        }
 
-            ImageModel[] imgM = new ImageModel[filePaths.Length];
+        public string[] getGaleryNames()
+        {
+            
+            var path = HttpContext.Current.Server.MapPath("~/images/uploads/gallery/");
+
+            var di = new DirectoryInfo(path);
+            var dirNames = di.GetDirectories();
+
+            string[] result = new string[dirNames.Length];
+
+            for(int i=0; i<dirNames.Length; i++)
+            {
+                result[i] = dirNames[i].Name;
+            }
+
+            return result;
+        }
+
+        public ImageModel[] loadImages(string albumName)
+        {
+            var path = HttpContext.Current.Server.MapPath("~/images/uploads/gallery/" + albumName);
+            var di = new DirectoryInfo(path);
+
+            var files = new FileInfo[0];
+            if (di.Exists)
+            {
+                files = di.GetFiles();
+            }
+            else
+            {
+                path = HttpContext.Current.Server.MapPath("~/images/uploads/gallery/");
+                di = new DirectoryInfo(path);
+                files = di.GetFiles();
+                albumName = "";
+            }
+
+            ImageModel[] imgM = new ImageModel[files.Length];
 
             if (imgM.Length > 0)
             {
-                for (int i = 0; i < filePaths.Length; i++)
+                for (int i = 0; i < files.Length; i++)
                 {
                     imgM[i] = new ImageModel();
-                    var filename = files[i].Name.Split('.');                   
+                    var filename = files[i].Name.Split('.');
                     imgM[i].imageName = filename[0];
-                    imgM[i].imageURL = "/images/uploads/gallery/" + imgM[i].imageName + ".jpg";                   
+                    imgM[i].galleryName = albumName;
+                    imgM[i].imageURL = "/images/uploads/gallery/" + imgM[i].galleryName + "/" + imgM[i].imageName + ".jpg";
                 }
             }
             else
@@ -35,7 +69,8 @@ namespace PhotoProject.Helpers
                 string noImagePath = @"images\siteImages\no_image.png";
                 ImageModel model = new ImageModel();
                 model.imageName = "No Image";
-                model.imageURL = noImagePath;                
+                model.imageURL = noImagePath;
+                model.id = -1;
 
                 imgM = new ImageModel[1];
                 imgM[0] = model;

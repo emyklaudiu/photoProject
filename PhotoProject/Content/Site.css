@@ -49,3 +49,12 @@ textarea {
 	opacity: 0;
 	filter: alpha(opacity=0);
 }
+
+#nav2 ul{    
+    display : none;
+}
+#nav2 li:hover > ul{
+    display : block;
+    position:relative;
+
+}

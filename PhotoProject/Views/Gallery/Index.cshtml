@@ -6,7 +6,15 @@
 
 <h2>Gallery</h2>
 <div>
-    @Html.ActionLink("Edit Gallery", "Index", "EditGallery", null, null)
+    @Html.ActionLink("Edit Gallery", "Index", "EditGallery", null , null) | 
+    @*@Html.ActionLink("New Gallery", "NewGallery", "EditGallery", new { onclick = "alert('da');" }, null)*@
+
+    @*@Html.ActionLink("New Gallery", "NewGallery", "EditGallery", new { onclick = "someFunction();" })*@
+
+    @*@Html.ActionLink("New Gallery", "NewGallery", "EditGallery", null, new { onclick = "newGallery();" })*@
+    <input type="text" id="galleryNameField" />
+
+    <input type="submit" id="newGallery" onclick="newGallery()" />
 </div>
 <div style=" /*width: 60%;
   height: 60%;*/
@@ -17,3 +25,24 @@
 </div>
 
 @Html.Partial("~/Views/EditGallery/_ImageItem.cshtml")
+
+
+<script>
+    var initial = true;
+    $(document).ready(function () {
+        $("#galleryNameField").hide();
+        initial = true;
+    });
+    function newGallery() {
+        if (initial == true) {
+            $("#galleryNameField").show();
+            initial = false;
+        }
+        else if (initial == false) {          
+            var galleryName = $('#galleryNameField').val();            
+            var galleryUrl = '@Url.Action("NewGallery/", "EditGallery", new { @galleryName = "99999" })';
+            window.location.href = galleryUrl.replace("99999", "Index/"+galleryName);
+        }
+
+    }
+</script>

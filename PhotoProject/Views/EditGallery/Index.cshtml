@@ -5,17 +5,21 @@
 
 <h2>Edit gallery</h2>
 
-@using (Html.BeginForm("Upload", "EditGallery", FormMethod.Post,
+@using (Html.BeginForm("Upload", "EditGallery", new { id = (@Request.Url.Segments[Request.Url.Segments.Length - 1] != "EditGallery") ? @Request.Url.Segments[Request.Url.Segments.Length - 1] : string.Empty }, FormMethod.Post,
                                       new { enctype = "multipart/form-data" }))
 {
     @Html.ValidationSummary(true)
     <fieldset>
         <div class="fileUpload btn btn-primary">
-            <span>Upload</span>
+            <span>Select file</span>
             <input type="file" id="uploadBox" name="file" class="upload" />
         </div>
 
-        <input type="submit" id="uploadFile" value="Upload"/>
+        <div id="uploadDiv" class="fileUpload btn btn-primary">
+            <span>Upload</span>
+            <input type="submit" id="uploadFile" value="Upload" class="upload" />
+        </div>
+       
     </fieldset>
 
     Html.RenderPartial("~/Views/EditGallery/_ImageItem.cshtml");
@@ -24,15 +28,15 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>  
     $(document).ready(function () {
-        $('#uploadFile').hide();
+        $('#uploadDiv').hide();
     });
 
     $('#uploadBox').change(function () {
         if ($('#uploadBox').val() != "") {
-            $('#uploadFile').show();
+            $('#uploadDiv').show();
         }
         else {
-            $('#uploadFile').hide();
+            $('#uploadDiv').hide();
         }
     });
 

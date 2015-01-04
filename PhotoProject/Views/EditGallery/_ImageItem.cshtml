@@ -5,7 +5,7 @@
     {
         <div style="display:inline-block; width:200px; margin:20px">
             @Html.Label(Model[i].imageName.Length>25?Model[i].imageName.Substring(0,25):Model[i].imageName)<br />
-            <img src="@Url.Content("~/images/uploads/gallery/"+@Model[i].imageName+".jpg")" width="200" onclick="clickImage(this.src);" /><br />
+            <img src="@Url.Content("~/images/uploads/gallery/"+@Model[i].galleryName+"/"+@Model[i].imageName+".jpg")" width="200" onclick="clickImage(this.src);" /><br />
             @Html.ActionLink("Delete", "DeleteImage", "EditGallery", Model[i], null)
         </div>
 
@@ -20,8 +20,15 @@
             imageFrame.src = "/images/siteImages/no_image.png";
         }
         else {
-            var x = "/images/uploads/gallery/"+ @Html.Raw(Json.Encode(Model[0].imageName+".jpg"));
-            imageFrame.src = x;
+            if('@Model[0].id' == -1)
+            {
+                imageFrame.src = "/images/siteImages/no_image.png";
+            }
+            else{
+                var x = "/images/uploads/gallery/"+ @Html.Raw(Json.Encode(Model[0].imageName+".jpg"));
+                if(imageFrame!=null)
+                imageFrame.src = x;
+            }
         }
     });
 

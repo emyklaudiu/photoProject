@@ -13,6 +13,8 @@ namespace PhotoProject.Models
 
         public string imageURL {get;set;}
 
+        public string galleryName { get; set; }
+
 
     }
 }

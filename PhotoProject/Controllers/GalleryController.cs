@@ -13,32 +13,39 @@ namespace PhotoProject.Controllers
     public class GalleryController : BaseController
     {
         // GET: Gallery
-        public ActionResult Index()
+        [Authorize]
+        public ActionResult Index(string albumName)
         {
             LoadImageHelper lh = new LoadImageHelper();
 
-            return View(lh.loadImages());
+            return View(lh.loadImages(albumName));
         }
 
-        public ActionResult Fade()
+        public string[] testGal()
+        {
+            LoadImageHelper lh = new LoadImageHelper();
+            string[] result =lh.getGaleryNames();
+            return result;
+        }
+
+        public ActionResult GetGalleries()
         {
             LoadImageHelper lh = new LoadImageHelper();
 
-            return View(lh.loadImages());
-            
+            return View(lh.getGaleryNames());
         }
 
+        [Authorize]
         public ActionResult EditGallery()
         {
             return RedirectToAction("Index", "EditGallery");
-
         }
 
-        public JsonResult ReturnModel()
+        public JsonResult ReturnModel(string albumName)
         {
             LoadImageHelper lh = new LoadImageHelper();
 
-            return Json(lh.loadImages());
+            return Json(lh.loadImages(albumName));
 
         }
     }
