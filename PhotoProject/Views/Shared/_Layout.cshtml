@@ -9,6 +9,15 @@
 
 </head>
 <body>
+     <div id="fb-root"></div>
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=265686180159888&version=v2.0";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -38,12 +47,20 @@
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <div class="container body-content">        
         @RenderBody()
         <hr />
-        <footer>
+        @*<footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+        </footer>*@
+         <div style="-webkit-column-count: 2; ">
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                <div style="float:right">
+            <div class="fb-like" data-href="https://www.facebook.com/claudiu.breha" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
+                    <div class="fb-like" data-href="https://www.facebook.com/claudiu.breha" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
+                    <div class="fb-like" data-href="https://www.facebook.com/claudiu.breha" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
+               </div>
+                </div>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
@@ -68,6 +85,4 @@
         error: function (result) {        
         }
     });
-   
-    
 </script>

@@ -58,3 +58,12 @@ textarea {
     position:relative;
 
 }
+
+.hideButton {
+    right:10px;
+    position:absolute;    
+    top:42%;
+    margin-top:-21px;    
+    margin:0;
+    padding:0;    
+}
