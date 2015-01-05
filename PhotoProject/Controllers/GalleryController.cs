@@ -21,11 +21,11 @@ namespace PhotoProject.Controllers
             return View(lh.loadImages(albumName));
         }
 
-        public string[] testGal()
+        public JsonResult testGal()
         {
             LoadImageHelper lh = new LoadImageHelper();
             string[] result =lh.getGaleryNames();
-            return result;
+            return Json(result);
         }
 
         public ActionResult GetGalleries()
