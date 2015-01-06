@@ -1,18 +1,35 @@
 ﻿@{
-    ViewBag.Title = "Contact";
+    ViewBag.Title = "Contact Us";
     Layout = "~/Views/Shared/_GalleryLayout.cshtml";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+<div id="divtest">
+    <div class="container" style="margin:30px">
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="row" style="background-color:#101010; color:white; text-align:center">
+                    <h3>@ViewBag.Title</h3>
+                </div>
+                <div class="row" style="background-color:wheat; padding:25px;text-align:left">
+                    <h4>Daca esti interesat(a) de serviciile mele, nu ezita sa ma contactezi, si sa iti rezervi locul din timp: </h4>
+
+                    <address>
+                        One Microsoft Way<br />
+                        Redmond, WA 98052-6399<br />
+                        <abbr title="Phone">Phone number:</abbr>
+                        +40747117123
+                    </address>
+
+                    <address>
+                        <strong>Name:</strong> Trudy G.<br /> 
+                        <strong>E-mail:</strong>   <a href="mailto:photoger92@yahoo.com">photoger92@yahoo.com</a><br />                        
+                    </address>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="fb-like-box" style="background-color:#101010; height:auto" data-href="https://www.facebook.com/pages/Its-All-About-Moments/826036747434571?pnref=lhc.recent" data-colorscheme="light" data-show-faces="true" data-header="true" data-stream="false" data-show-border="true"></div>
+            </div>
+        </div>
+    </div>
+</div>
