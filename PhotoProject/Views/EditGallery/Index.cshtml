@@ -12,12 +12,13 @@
     @Html.ValidationSummary(true)
     <fieldset>
         <div class="fileUpload btn btn-primary">
-            <span>Select file</span>
+            <span>Selecteaza fisier</span>
             <input type="file" id="uploadBox" name="file" class="upload" />
         </div>
 
+
         <div id="uploadDiv" class="fileUpload btn btn-primary">
-            <span>Upload</span>
+            <span>Incarca fisier</span>
             <input type="submit" id="uploadFile" value="Upload" class="upload" />
         </div>
 
@@ -26,10 +27,21 @@
     Html.RenderPartial("~/Views/EditGallery/_ImageItem.cshtml");
 }
 
+<div id="deleteGalleryButton" class="fileUpload btn btn-primary">
+    <span>Sterge portofoliu</span>
+    <input type="submit" id="deleteGallery" value="deleteGallery" name="file" class="upload" onclick="deleteGallery('@ViewBag.Portofoliu')"/>
+</div>    
+
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>
     $(document).ready(function () {
         $('#uploadDiv').hide();
+
+        if('@ViewBag.Portofoliu'=='')
+        {
+            $('#deleteGalleryButton').hide();            
+        }
+        else $('#deleteGalleryButton').show();
     });
 
     $('#uploadBox').change(function () {
@@ -39,6 +51,21 @@
         else {
             $('#uploadDiv').hide();
         }
-    });
+    });    
+
+    function deleteGallery(galleryName) {        
+        $.ajax({
+            url: "/EditGallery/deleteGallery",         
+            data: { galleryName : galleryName },
+            type: 'POST',
+            success: function (result) {
+                window.location.href ="/Gallery";
+                alert("Portofoliul a fost sters");
+            },
+            error: function (result) {
+                alert("Eroare: Portofoliul contine fotografii. \nStergeti fotografiile inainte sa stergeti portofoliul!");
+            }
+        });
+    }
 
 </script>

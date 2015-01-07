@@ -42,7 +42,7 @@ namespace PhotoProject.Controllers
                 file.SaveAs(path);
             }
 
-            return RedirectToAction(id==null? "" : "Index/" + id);
+            return RedirectToAction(id == null ? "" : "Index/" + id);
         }
 
 
@@ -55,7 +55,7 @@ namespace PhotoProject.Controllers
                 System.IO.File.Delete(fullPath);
             }
 
-            return RedirectToAction(fileName.galleryName==null? "" : "Index/" + fileName.galleryName);
+            return RedirectToAction(fileName.galleryName == null ? "" : "Index/" + fileName.galleryName);
         }
 
         public ActionResult NewGallery(string galleryName)
@@ -64,6 +64,15 @@ namespace PhotoProject.Controllers
             Directory.CreateDirectory(fullPath);
 
             return RedirectToAction(galleryName);
+        }
+
+        [HttpPost]
+        public ActionResult deleteGallery(string galleryName)
+        {
+            var fullPath = Server.MapPath("~/images/uploads/gallery/");
+            Directory.Delete(fullPath+galleryName);
+
+            return RedirectToAction("", "Gallery");
         }
     }
 }
