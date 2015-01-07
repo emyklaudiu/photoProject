@@ -12,7 +12,6 @@ namespace PhotoProject.Controllers
 {
     public class GalleryController : BaseController
     {
-        // GET: Gallery
         [Authorize]
         public ActionResult Index(string albumName)
         {
@@ -21,10 +20,11 @@ namespace PhotoProject.Controllers
             return View(lh.loadImages(albumName));
         }
 
-        public JsonResult testGal()
+        public JsonResult getGalleryNames()
         {
             LoadImageHelper lh = new LoadImageHelper();
-            string[] result =lh.getGaleryNames();
+            string[] result = lh.getGaleryNames();
+
             return Json(result);
         }
 

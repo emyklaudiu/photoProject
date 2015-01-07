@@ -11,17 +11,16 @@ namespace PhotoProject.Controllers
 {
     public class EditGalleryController : Controller
     {
-        // GET: EditGallery
         [Authorize]
         public ActionResult Index(string id)
         {
             LoadImageHelper lh = new LoadImageHelper();
 
             return View(lh.loadImages(id));
-        }      
+        }
 
-          [HttpPost]
-          public ActionResult addImage(HttpPostedFileBase file)
+        [HttpPost]
+        public ActionResult addImage(HttpPostedFileBase file)
         {
             if (file.ContentLength > 0)
             {
@@ -34,7 +33,7 @@ namespace PhotoProject.Controllers
         }
 
         [HttpPost]
-          public ActionResult Upload(HttpPostedFileBase file, string id)
+        public ActionResult Upload(HttpPostedFileBase file, string id)
         {
             if (file != null && file.ContentLength > 0)
             {
@@ -42,22 +41,21 @@ namespace PhotoProject.Controllers
                 var path = Path.Combine(Server.MapPath("~/images/uploads/gallery/" + id), fileName);
                 file.SaveAs(path);
             }
-            return RedirectToAction("Index/"+id);
+
+            return RedirectToAction("Index/" + id);
         }
 
-        
+
         public ActionResult DeleteImage(ImageModel fileName)
         {
-            var fullPath = Server.MapPath("~/images/uploads/gallery/"+ fileName.galleryName+"/" + fileName.imageName+".jpg");
-
-
+            var fullPath = Server.MapPath("~/images/uploads/gallery/" + fileName.galleryName + "/" + fileName.imageName + ".jpg");
 
             if (System.IO.File.Exists(fullPath))
             {
-                System.IO.File.Delete(fullPath);                
+                System.IO.File.Delete(fullPath);
             }
 
-            return RedirectToAction("Index/"+fileName.galleryName);
+            return RedirectToAction("Index/" + fileName.galleryName);
         }
 
         public ActionResult NewGallery(string galleryName)

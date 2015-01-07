@@ -8,13 +8,13 @@
 <html>
 <head>
     <script>
-(function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=265686180159888&version=v2.0";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=265686180159888&version=v2.0";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,7 +22,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <meta name="viewport" content="width=device-width" />
-    
+
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 
     <link rel="stylesheet" href="/content/supersized.css" type="text/css" media="screen" />
@@ -98,19 +98,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                
+
                 @Html.ActionLink("PhotoGer", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>                    
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     @if (HttpContext.Current.User.Identity.IsAuthenticated)
                     {
                         <li>@Html.ActionLink("Gallery", "Index", "Gallery")</li>
                     }
-                    @*<li>@Html.ActionLink("Edit Gallery", "EditGallery", "Gallery")</li>*@
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -118,23 +117,17 @@
     </div>
 
     <div class="container body-content">
-        <input type="button" class="btn btn-primary btn-xs hideButton" name="test" value="Hide" id="test" onclick='test();' />
-        @RenderBody()               
+        <input type="button" class="btn btn-primary btn-xs hideButton" name="buttonHide" value="Hide" id="buttonHide" onclick='hideContent();' />
+        @RenderBody()
     </div>
-
-    @*  @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)*@
-    <!--Demo styles (you can delete this block)-->
-    <!--End of styles-->
-    <!--Thumbnail Navigation-->
+   
     <div id="prevthumb"></div>
     <div id="nextthumb"></div>
 
     <!--Arrow Navigation-->
     <a id="prevslide" class="load-item"></a>
     <a id="nextslide" class="load-item"></a>
-    
+
 
     <div id="thumb-tray" class="load-item">
         <div id="thumb-back"></div>
@@ -150,21 +143,25 @@
     <div id="controls-wrapper" class="load-item">
         <div id="controls">
 
-            <a id="play-button"><img id="pauseplay" src="/content/img/pause.png" /></a>
+            <a id="play-button">
+                <img id="pauseplay" src="/content/img/pause.png" /></a>
 
             <!--Slide counter-->
             <div id="slidecounter">
-                <span class="slidenumber"></span> / <span class="totalslides"></span>
-                <div style="position:relative; left:10px; bottom:12px" class="fb-like " data-href="https://www.facebook.com/pages/Its-All-About-Moments/826036747434571?pnref=lhc.recent" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
-                <div style="position:relative; left:10px; bottom:12px" class="fb-share-button" data-href="https://www.facebook.com/pages/Its-All-About-Moments/826036747434571" data-layout="button_count"></div>
-            <a style="position:relative; left:10px; bottom:2px" href="http://instagram.com/it_is_all_about_moments?ref=badge" class="ig-b- ig-b-v-24"><img src="//badges.instagram.com/static/images/ig-badge-view-24.png" alt="Instagram" /></a> </div>
+                <span class="slidenumber"></span>/ <span class="totalslides"></span>
+                <div style="position: relative; left: 10px; bottom: 12px" class="fb-like " data-href="https://www.facebook.com/pages/Its-All-About-Moments/826036747434571?pnref=lhc.recent" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
+                <div style="position: relative; left: 10px; bottom: 12px" class="fb-share-button" data-href="https://www.facebook.com/pages/Its-All-About-Moments/826036747434571" data-layout="button_count"></div>
+                <a style="position: relative; left: 10px; bottom: 2px" href="http://instagram.com/it_is_all_about_moments?ref=badge" class="ig-b- ig-b-v-24">
+                    <img src="//badges.instagram.com/static/images/ig-badge-view-24.png" alt="Instagram" /></a>
+            </div>
 
             <!--Slide captions displayed here-->
             <div id="slidecaption"></div>
 
 
             <!--Thumb Tray button-->
-            <a id="tray-button"><img id="tray-arrow" src="/content/img/button-tray-up.png" /></a>
+            <a id="tray-button">
+                <img id="tray-arrow" src="/content/img/button-tray-up.png" /></a>
 
             <!--Navigation-->
             <ul id="slide-list"></ul>
@@ -175,7 +172,7 @@
 </html>
 
 <script>
-    function test() {
-        $("#divtest").toggle(600);
+    function hideContent() {
+        $("#divContent").toggle(600);
     }
 </script>

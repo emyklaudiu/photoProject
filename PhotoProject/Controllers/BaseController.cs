@@ -8,8 +8,9 @@ using System.Web.Mvc;
 
 namespace PhotoProject.Controllers
 {
-    public class BaseController:Controller
+    public class BaseController : Controller
     {
+        //This base class will be inherited by all controller classes in order to be able to access the loaded images
         public ImageModel[] model;
         public BaseController()
         {
@@ -17,10 +18,9 @@ namespace PhotoProject.Controllers
             model = loadHelper.loadImages("");
             ViewBag.LayoutModel = model;
         }
+
         public BaseController(string albumName)
         {
-            // Here you will use some business logic to populate your Layout Model
-            // You might also consider placing this model into the cache to prevent constant fetching of data from the database on each page request.
             LoadImageHelper loadHelper = new LoadImageHelper();
             model = loadHelper.loadImages(albumName);
             ViewBag.LayoutModel = model;

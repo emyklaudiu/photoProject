@@ -9,12 +9,10 @@ namespace PhotoProject.Models
     {
         public int id { get; set; }
 
-        public string imageName { get; set;}
+        public string imageName { get; set; }
 
-        public string imageURL {get;set;}
+        public string imageURL { get; set; }
 
         public string galleryName { get; set; }
-
-
     }
 }

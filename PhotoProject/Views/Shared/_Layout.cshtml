@@ -9,8 +9,8 @@
 
 </head>
 <body>
-     <div id="fb-root"></div>
-<script>(function (d, s, id) {
+    <div id="fb-root"></div>
+    <script>(function (d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
     js = d.createElement(s); js.id = id;
@@ -33,34 +33,35 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    @if (HttpContext.Current.User.Identity.IsAuthenticated) { 
-                    <li id="nav2">@Html.ActionLink("Gallery", "Index", "Gallery")
-                    <ul id="galleryDropdown" class="nav navbar-nav">
-                      
-                    </ul>
-                    </li>
+                    @if (HttpContext.Current.User.Identity.IsAuthenticated)
+                    { 
+                        <li id="nav2">@Html.ActionLink("Gallery", "Index", "Gallery")
+                            <ul id="galleryDropdown" class="nav navbar-nav">
+                            </ul>
+                        </li>
                        
                     }
                 </ul>
-               
+
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
-    <div class="container body-content">        
+    <div class="container body-content">
         @RenderBody()
         <hr />
         @*<footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>*@
-         <div style="-webkit-column-count: 2; ">
+        <div style="-webkit-column-count: 2;">
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-                <div style="float:right">
-                    <div class="fb-like" data-href="https://www.facebook.com/pages/Its-All-About-Moments/826036747434571?pnref=lhc.recent" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
-                    <div class="fb-share-button" data-href="https://www.facebook.com/pages/Its-All-About-Moments/826036747434571" data-layout="button_count"></div>
-                    <a style="bottom:2px" href="http://instagram.com/it_is_all_about_moments?ref=badge" class="ig-b- ig-b-v-24"><img src="//badges.instagram.com/static/images/ig-badge-view-24.png" alt="Instagram" /></a>
-               </div>
-                </div>
+            <div style="float: right">
+                <div class="fb-like" data-href="https://www.facebook.com/pages/Its-All-About-Moments/826036747434571?pnref=lhc.recent" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
+                <div class="fb-share-button" data-href="https://www.facebook.com/pages/Its-All-About-Moments/826036747434571" data-layout="button_count"></div>
+                <a style="bottom: 2px" href="http://instagram.com/it_is_all_about_moments?ref=badge" class="ig-b- ig-b-v-24">
+                    <img src="//badges.instagram.com/static/images/ig-badge-view-24.png" alt="Instagram" /></a>
+            </div>
+        </div>
     </div>
 
     @Scripts.Render("~/bundles/jquery")
@@ -73,16 +74,15 @@
 <script>
 
     $.ajax({
-        url: "/Gallery/testGal",
+        url: "/Gallery/getGalleryNames",
         dataType: "json",
         type: 'POST',
-        success: function (result) {         
+        success: function (result) {
             for (var x = 0; x < result.length; x++) {
-                //alert(result[x]);
-                $("#galleryDropdown").append(('<li>@Html.ActionLink("Title","Action", "Controller")</li>').replace("Title", result[x]).replace("Controller","EditGallery").replace("Action", "Index/"+result[x]));
+                $("#galleryDropdown").append(('<li>@Html.ActionLink("Title", "Action", "Controller")</li>').replace("Title", result[x]).replace("Controller", "EditGallery").replace("Action", "Index/" + result[x]));
             }
         },
-        error: function (result) {        
+        error: function (result) {
         }
     });
 </script>
