@@ -42,7 +42,7 @@ namespace PhotoProject.Controllers
                 file.SaveAs(path);
             }
 
-            return RedirectToAction("Index/" + id);
+            return RedirectToAction(id==null? "" : "Index/" + id);
         }
 
 
@@ -55,7 +55,7 @@ namespace PhotoProject.Controllers
                 System.IO.File.Delete(fullPath);
             }
 
-            return RedirectToAction("Index/" + fileName.galleryName);
+            return RedirectToAction(fileName.galleryName==null? "" : "Index/" + fileName.galleryName);
         }
 
         public ActionResult NewGallery(string galleryName)

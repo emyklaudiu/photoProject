@@ -1,11 +1,12 @@
 ﻿@using PhotoProject.Models;
 @{
-    ViewBag.Title = "Index";    
+    ViewBag.Title = "Modifica Portofoliu";
+    ViewBag.Portofoliu = (@Request.Url.Segments[Request.Url.Segments.Length - 1] != "EditGallery") ? @Request.Url.Segments[Request.Url.Segments.Length - 1] : string.Empty;
 }
 
-<h2>Edit gallery</h2>
+<h2>@ViewBag.Title @ViewBag.Portofoliu</h2>
 
-@using (Html.BeginForm("Upload", "EditGallery", new { id = (@Request.Url.Segments[Request.Url.Segments.Length - 1] != "EditGallery") ? @Request.Url.Segments[Request.Url.Segments.Length - 1] : string.Empty }, FormMethod.Post,
+@using (Html.BeginForm("Upload", "EditGallery", new { id = @ViewBag.Portofoliu }, FormMethod.Post,
                                       new { enctype = "multipart/form-data" }))
 {
     @Html.ValidationSummary(true)
